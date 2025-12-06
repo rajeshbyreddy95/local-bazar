@@ -165,13 +165,22 @@ export default function ProfilePage() {
               <div className="bg-[#f4f8f6] rounded-2xl p-6 shadow-sm border border-[#e8f5e9] mb-10">
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
                   <h2 className="text-xl font-bold text-[#1b5e20] flex items-center gap-2"><FiMapPin className="text-[#689f38]" /> Shop Info</h2>
-                  <button
-                    onClick={() => router.push('/seller/products/analytics')}
-                    className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-[#689f38] to-[#1b5e20] hover:from-[#1b5e20] hover:to-[#689f38] text-white font-bold rounded-xl shadow-md transition-all duration-300 text-base"
-                  >
-                    <FiPackage className="text-lg" />
-                    View Products ({productCount})
-                  </button>
+                  <div className="flex gap-3 flex-wrap">
+                    <button
+                      onClick={() => router.push('/seller/orders')}
+                      className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-md transition-all duration-300 text-base"
+                    >
+                      <FiShoppingBag className="text-lg" />
+                      Orders Received
+                    </button>
+                    <button
+                      onClick={() => router.push('/seller/products/analytics')}
+                      className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-[#689f38] to-[#1b5e20] hover:from-[#1b5e20] hover:to-[#689f38] text-white font-bold rounded-xl shadow-md transition-all duration-300 text-base"
+                    >
+                      <FiPackage className="text-lg" />
+                      View Products ({productCount})
+                    </button>
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex items-center gap-3">

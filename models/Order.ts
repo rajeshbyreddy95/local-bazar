@@ -7,6 +7,8 @@ interface OrderItem {
   discount: number;
   quantity: number;
   sellerId: string;
+  sellerEmail: string;
+  sellerName: string;
 }
 
 interface OrderDocument extends Document {
@@ -68,6 +70,8 @@ const OrderSchema = new Schema<OrderDocument>(
         discount: Number,
         quantity: Number,
         sellerId: String,
+        sellerEmail: String,
+        sellerName: String,
       },
     ],
     address: {

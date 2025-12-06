@@ -57,6 +57,8 @@ export async function POST(request: Request) {
             return {
               ...item,
               sellerId: item.sellerId && item.sellerId.trim() !== '' ? item.sellerId : product._id.toString(),
+              sellerEmail: product.sellerEmail,
+              sellerName: product.shopName,
             };
           } catch (error) {
             console.error(`Stock validation error for item ${item._id || item.productId}:`, error);

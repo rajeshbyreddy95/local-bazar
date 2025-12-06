@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { FiArrowLeft, FiLoader, FiX, FiUpload } from 'react-icons/fi';
+import { FiArrowLeft, FiLoader, FiX, FiUpload, FiShoppingBag, FiList } from 'react-icons/fi';
 
 interface ProductFormData {
   itemName: string;
@@ -203,14 +203,30 @@ export default function AddProductsPage() {
   return (
     <div className="min-h-screen bg-[#ccf5d1] py-12 px-6">
       <div className="max-w-4xl mx-auto">
-        {/* Back Button */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-[#689f38] hover:text-[#1b5e20] font-bold mb-8 transition-colors"
-        >
-          <FiArrowLeft className="text-lg" />
-          Back to Home
-        </Link>
+        {/* Navigation Menu */}
+        <div className="mb-8 bg-white rounded-lg shadow-md p-4 flex flex-col sm:flex-row gap-3">
+          <Link
+            href="/"
+            className="flex items-center justify-center sm:justify-start gap-2 text-[#689f38] hover:text-[#1b5e20] font-bold transition-colors px-4 py-2 bg-[#f0f7ed] rounded-lg"
+          >
+            <FiArrowLeft className="text-lg" />
+            Back to Home
+          </Link>
+          <Link
+            href="/seller/products/list"
+            className="flex items-center justify-center sm:justify-start gap-2 text-[#1b5e20] hover:text-[#689f38] font-bold transition-colors px-4 py-2 bg-[#e8f5e9] rounded-lg"
+          >
+            <FiList className="text-lg" />
+            My Products
+          </Link>
+          <Link
+            href="/seller/orders"
+            className="flex items-center justify-center sm:justify-start gap-2 bg-[#689f38] text-white font-bold transition-colors px-4 py-2 rounded-lg hover:bg-[#1b5e20]"
+          >
+            <FiShoppingBag className="text-lg" />
+            Orders
+          </Link>
+        </div>
 
         {/* Page Header */}
         <div className="mb-8">
