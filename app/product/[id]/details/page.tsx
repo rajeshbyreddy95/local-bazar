@@ -90,7 +90,7 @@ export default function ProductDetailsPage() {
       try {
         const res = await fetch('/api/wishlist', { method: 'GET' });
         const data = await res.json();
-        if (data.wishlist && data.wishlist.items.some(i => i.productId === product._id)) {
+        if (data.wishlist && data.wishlist.items.some((i: any) => i.productId === product._id)) {
           setInWishlist(true);
         } else {
           setInWishlist(false);

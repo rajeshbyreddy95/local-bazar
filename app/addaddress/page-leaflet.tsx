@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-// import L from "leaflet";
+import type * as LeafletTypes from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { FiMapPin, FiCheck, FiLoader } from "react-icons/fi";
 import { showToast } from "@/components/Toast";
@@ -49,9 +49,10 @@ export default function AddAddressPage() {
 
   // Map refs
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const leafletMapRef = useRef<L.Map | null>(null);
-  const markerRef = useRef<L.Marker | null>(null);
+  const leafletMapRef = useRef<LeafletTypes.Map | null>(null);
+  const markerRef = useRef<LeafletTypes.Marker | null>(null);
   const mapInitializedRef = useRef(false);
+  const leafletRef = useRef<typeof LeafletTypes | null>(null);
 
   // Debounce and request dedupe refs
   const debounceTimerRef = useRef<number | null>(null);
@@ -262,13 +263,11 @@ useEffect(() => {
   if (!location || mapInitializedRef.current || !mapRef.current) return;
 
   // Load Leaflet only in the browser
-  let L: typeof import("leaflet");
-
   (async () => {
-    const leaflet = await import("leaflet");
+    const L = await import("leaflet");
+    leafletRef.current = L;
     // @ts-expect-error - CSS imports are valid in Next.js
     await import("leaflet/dist/leaflet.css");
-    L = leaflet;
 
     mapInitializedRef.current = true;
 
@@ -317,9 +316,10 @@ useEffect(() => {
 
   // when location changes (from other triggers), ensure marker and map view update
   useEffect(() => {
-    if (!location || !leafletMapRef.current) return;
+    if (!location || !leafletMapRef.current || !leafletRef.current) return;
     // update marker and map center
     const map = leafletMapRef.current;
+    const L = leafletRef.current;
     if (markerRef.current) {
       markerRef.current.setLatLng([location.lat, location.lng]);
     } else {

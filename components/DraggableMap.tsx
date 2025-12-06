@@ -7,24 +7,30 @@ interface DraggableMapProps {
   onLocationChange: (lat: number, lng: number) => void;
 }
 
+declare global {
+  interface Window {
+    google: any;
+  }
+}
+
 export default function DraggableMap({ lat, lng, onLocationChange }: DraggableMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const markerRef = useRef<any>(null);
 
   useEffect(() => {
-    if (!window.google) return;
-    const map = new window.google.maps.Map(mapRef.current!, {
+    if (!(window as any).google) return;
+    const map = new (window as any).google.maps.Map(mapRef.current!, {
       center: { lat, lng },
       zoom: 15,
       disableDefaultUI: true,
     });
-    const marker = new window.google.maps.Marker({
+    const marker = new (window as any).google.maps.Marker({
       position: { lat, lng },
       map,
       draggable: true,
       icon: {
         url: 'https://maps.gstatic.com/mapfiles/ms2/micons/blue-dot.png',
-        scaledSize: new window.google.maps.Size(40, 40),
+        scaledSize: new (window as any).google.maps.Size(40, 40),
       },
     });
     markerRef.current = marker;

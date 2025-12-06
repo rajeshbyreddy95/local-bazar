@@ -20,10 +20,10 @@ export async function GET(request: Request) {
           signal: AbortSignal.timeout(8000),
         }
       ),
-      new Promise((_, reject) =>
+      new Promise<Response>((_, reject) =>
         setTimeout(() => reject(new Error('Request timeout')), 8000)
       ),
-    ]);
+    ]) as Response;
 
     if (!response.ok) {
       throw new Error(`Nominatim API error: ${response.status}`);

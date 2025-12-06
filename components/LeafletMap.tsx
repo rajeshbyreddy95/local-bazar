@@ -99,7 +99,7 @@ export default function LeafletMap({ lat, lng, onLocationChange }: LeafletMapPro
 
     debounceTimer.current = setTimeout(() => {
       getAddress(latitude, longitude).then((result) => {
-        if (result.address) {
+        if (result && result.address) {
           onLocationChange(latitude, longitude, result.address, result.details);
         }
       });
