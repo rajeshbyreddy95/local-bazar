@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ccf5d1;
+  --foreground: #1a1a1a;
+  --primary-green: #8bc34a;
+  --dark-green: #689f38;
+  --light-green: #e8f5e9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  padding: auto;
+  box-sizing: border-box;
+  
+ 
 }
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes toast-bar {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.animate-toast-bar {
+  animation: toast-bar 2s linear forwards;
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.7);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 102, 255, 0);
+    opacity: 0.8;
+  }
+}
+
+.leaflet-pane svg circle[style*="0066ff"] {
+  animation: glow-pulse 2s infinite;
+}
+.animate-slide-in {
+  animation: slide-in 0.3s ease;
 }
