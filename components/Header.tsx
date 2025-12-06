@@ -80,14 +80,14 @@ export default function Header() {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6">
           <Link href="/" className="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity duration-300">
-            <div className="text-5xl font-bold">🌿</div>
+            <div className="text-5xl font-bold"></div>
             <div>
               <h1 className="text-4xl font-black text-[#1b5e20]">Local Bazar</h1>
               <p className="text-sm font-semibold text-[#689f38]">Your Local Marketplace</p>
             </div>
           </Link>
           {/* Location in Header */}
-          <div className="flex flex-col items-center ml-6">
+          {/* <div className="flex flex-col items-center ml-6">
             <button
               className="flex flex-col items-center group"
               onClick={() => router.push('/addaddress')}
@@ -101,7 +101,7 @@ export default function Header() {
                 )}
               </span>
             </button>
-          </div>
+          </div> */}
           {/* Desktop Nav */}
           <nav className="hidden md:flex gap-10 items-center justify-center flex-1">
             <a href="/" className="font-bold text-lg text-[#1b5e20] transition-all duration-300 hover:scale-110">Home</a>

@@ -459,8 +459,8 @@ export default function ExploreProductsPage() {
                       )}
 
                       {/* Stock Status */}
-                      {product.stock === 0 && (
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                      {Number(product.stock) <= 0 && (
+                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg">
                           <p className="text-white font-bold text-lg">Out of Stock</p>
                         </div>
                       )}
@@ -516,16 +516,16 @@ export default function ExploreProductsPage() {
                       {/* Stock Status */}
                       <p
                         className={`text-sm font-bold ${
-                          product.stock > 0 ? 'text-green-600' : 'text-red-600'
+                          Number(product.stock) > 0 ? 'text-green-600' : 'text-red-600'
                         }`}
                       >
-                        {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+                        {Number(product.stock) > 0 ? `${product.stock} in stock` : 'Out of stock'}
                       </p>
 
                       {/* View Details Button */}
                       <button
                         onClick={() => openModal(product)}
-                        disabled={product.stock === 0}
+                        disabled={!product.stock || Number(product.stock) <= 0}
                         className="w-full mt-4 bg-[#689f38] hover:bg-[#1b5e20] disabled:bg-gray-400 text-white font-bold py-2 rounded-lg transition-colors"
                       >
                         View Details
@@ -596,10 +596,10 @@ export default function ExploreProductsPage() {
                     <p className="text-sm font-semibold text-gray-600">Stock</p>
                     <p
                       className={`text-lg font-bold ${
-                        selectedProduct.stock > 0 ? 'text-green-600' : 'text-red-600'
+                        Number(selectedProduct.stock) > 0 ? 'text-green-600' : 'text-red-600'
                       }`}
                     >
-                      {selectedProduct.stock > 0
+                      {Number(selectedProduct.stock) > 0
                         ? `${selectedProduct.stock} units available`
                         : 'Out of stock'}
                     </p>
@@ -666,7 +666,7 @@ export default function ExploreProductsPage() {
                   {wishlist.has(selectedProduct._id) ? 'Added to Wishlist' : 'Add to Wishlist'}
                 </button>
                 <button
-                  disabled={selectedProduct.stock === 0}
+                  disabled={!selectedProduct.stock || Number(selectedProduct.stock) <= 0}
                   className="flex-1 bg-[#689f38] hover:bg-[#1b5e20] disabled:bg-gray-400 text-white font-bold py-3 rounded-lg transition-colors"
                 >
                   Add to Cart

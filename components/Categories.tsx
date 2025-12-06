@@ -1,38 +1,96 @@
 import Link from 'next/link';
-import { GiTomato, GiAppleSeeds, GiCheeseWedge, GiClothes } from 'react-icons/gi';
 
 const categories = [
   {
-    icon: <GiTomato />,
+    emoji: '🥬',
     name: 'Vegetables',
     description: 'Fresh & Organic',
-    color: 'text-red-500',
     bgColor: '#fef2f2',
     slug: 'vegetables'
   },
   {
-    icon: <GiAppleSeeds />,
-    name: 'Food & Beverages',
+    emoji: '🍎',
+    name: 'Fruits',
     description: 'Seasonal & Sweet',
-    color: 'text-yellow-600',
-    bgColor: '#fffbeb',
-    slug: 'Food & Beverages'
+    bgColor: '#fff7ed',
+    slug: 'fruits'
   },
   {
-    icon: <GiCheeseWedge />,
+    emoji: '🧀',
     name: 'Dairy & More',
     description: 'Pure & Healthy',
-    color: 'text-orange-500',
-    bgColor: '#fff7ed',
+    bgColor: '#fef3c7',
     slug: 'dairy-more'
   },
   {
-    icon: <GiClothes />,
+    emoji: '👔',
     name: 'Clothing',
     description: 'Trendy & Stylish',
-    color: 'text-blue-600',
     bgColor: '#eff6ff',
     slug: 'clothing'
+  },
+  {
+    emoji: '📱',
+    name: 'Electronics',
+    description: 'Latest Tech',
+    bgColor: '#f0fdf4',
+    slug: 'electronics'
+  },
+  {
+    emoji: '🏠',
+    name: 'Home & Kitchen',
+    description: 'Modern & Functional',
+    bgColor: '#faf5ff',
+    slug: 'home-kitchen'
+  },
+  {
+    emoji: '📚',
+    name: 'Books',
+    description: 'Knowledge & Stories',
+    bgColor: '#f5f3ff',
+    slug: 'books'
+  },
+  {
+    emoji: '⚽',
+    name: 'Sports',
+    description: 'Active & Fit',
+    bgColor: '#ecfdf5',
+    slug: 'sports'
+  },
+  {
+    emoji: '💄',
+    name: 'Beauty',
+    description: 'Care & Glow',
+    bgColor: '#fdf2f8',
+    slug: 'beauty'
+  },
+  {
+    emoji: '🎮',
+    name: 'Toys',
+    description: 'Fun & Games',
+    bgColor: '#fef9c3',
+    slug: 'toys'
+  },
+  {
+    emoji: '🍔',
+    name: 'Food & Beverages',
+    description: 'Taste & Enjoy',
+    bgColor: '#fffbeb',
+    slug: 'food-beverages'
+  },
+  {
+    emoji: '🪑',
+    name: 'Furniture',
+    description: 'Comfort & Style',
+    bgColor: '#f3e8ff',
+    slug: 'furniture'
+  },
+  {
+    emoji: '🚗',
+    name: 'Automotive',
+    description: 'Drive & Go',
+    bgColor: '#ecf0f1',
+    slug: 'automotive'
   }
 ];
 
@@ -54,8 +112,8 @@ export default function Categories() {
                 className="rounded-3xl p-12 text-center shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 cursor-pointer h-full"
                 style={{ backgroundColor: category.bgColor }}
               >
-                <div className={`text-8xl mb-6 ${category.color} flex justify-center`}>
-                  {category.icon}
+                <div className="text-8xl mb-6 flex justify-center">
+                  {category.emoji}
                 </div>
                 <h3 className="text-3xl font-black mb-3 text-[#1b5e20]">{category.name}</h3>
                 <p className="text-lg font-semibold text-[#689f38]">{category.description}</p>

@@ -69,6 +69,15 @@ export async function GET(request: NextRequest) {
       .sort(sortOptions)
       .limit(100);
 
+    // Log sample product stock for debugging
+    if (products.length > 0) {
+      console.log('🔍 API: Sample product with stock:', {
+        itemName: products[0].itemName,
+        stock: products[0].stock,
+        stockType: typeof products[0].stock,
+      });
+    }
+
     // Cache for 30 minutes (1800 seconds)
     await cacheSet(cacheKey, products, 1800);
 
