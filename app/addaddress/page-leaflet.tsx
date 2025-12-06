@@ -266,11 +266,13 @@ useEffect(() => {
 
   (async () => {
     const leaflet = await import("leaflet");
+    // @ts-expect-error - CSS imports are valid in Next.js
     await import("leaflet/dist/leaflet.css");
     L = leaflet;
 
     mapInitializedRef.current = true;
 
+    if (!mapRef.current) return;
     const map = L.map(mapRef.current).setView([location.lat, location.lng], 15);
     leafletMapRef.current = map;
 
