@@ -3,6 +3,7 @@ import connectDB from '@/lib/mongodb';
 import { Order } from '@/models/Order';
 import { User } from '@/models/User';
 import { getAuthUser } from '@/lib/auth';
+import { cacheSet, cacheGet, cacheDelete } from '@/lib/redis';
 
 export async function GET(request: NextRequest) {
   try {
@@ -12,6 +13,23 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
+      );
+    }
+
+    // Check Redis cache first
+    const cacheKey = `seller:orders:${user.email}`;
+    const cachedOrders = await cacheGet(cacheKey);
+    
+    if (cachedOrders) {
+      console.log('✅ Cache HIT: Seller orders for', user.email);
+      return NextResponse.json(
+        {
+          success: true,
+          orders: JSON.parse(cachedOrders),
+          count: JSON.parse(cachedOrders).length,
+          cached: true,
+        },
+        { status: 200 }
       );
     }
 
@@ -43,11 +61,15 @@ export async function GET(request: NextRequest) {
       };
     });
 
+    // Cache the results for 5 minutes
+    await cacheSet(cacheKey, JSON.stringify(sellerOrders), 300);
+
     return NextResponse.json(
       {
         success: true,
         orders: sellerOrders,
         count: sellerOrders.length,
+        cached: false,
       },
       { status: 200 }
     );

@@ -4,6 +4,7 @@ import { Order } from '@/models/Order';
 import { User } from '@/models/User';
 import { getAuthUser } from '@/lib/auth';
 import nodemailer from 'nodemailer';
+import { cacheDelete } from '@/lib/redis';
 
 // Configure email
 const transporter = nodemailer.createTransport({
@@ -65,6 +66,9 @@ export async function POST(request: NextRequest) {
     }
     
     await order.save();
+    
+    // Clear the seller's orders cache
+    await cacheDelete(`seller:orders:${seller.email}`);
 
     // Get buyer info
     const buyer = await User.findById(order.userId);

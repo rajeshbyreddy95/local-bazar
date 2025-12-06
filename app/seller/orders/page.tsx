@@ -418,7 +418,7 @@ export default function SellerOrdersPage() {
                                   )}
                                 </button>
                               ) : (
-                                <button className="w-full px-4 py-3 bg-green-500 hover:bg-green-600 text-white font-black text-sm rounded-lg shadow-md">
+                                <button disabled className="w-full px-4 py-3 bg-green-500 text-white font-black text-sm rounded-lg shadow-md cursor-not-allowed opacity-90">
                                   <span className="flex items-center justify-center gap-2">
                                     <FiCheck size={18} />
                                     ✓ DONE
